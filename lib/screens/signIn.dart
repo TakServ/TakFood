@@ -6,6 +6,7 @@ import 'package:takfood/model/user_model.dart';
 import 'package:takfood/screens/main_rider.dart';
 import 'package:takfood/screens/main_shop.dart';
 import 'package:takfood/screens/main_user.dart';
+import 'package:takfood/utility/my_constant.dart';
 import 'package:takfood/utility/my_style.dart';
 import 'package:takfood/utility/normal_dialog.dart';
 
@@ -74,7 +75,7 @@ class _SignInState extends State<SignIn> {
       ));
   Future<Null> checkAuthen() async {
     String url =
-        'http://192.168.3.208/TakFood/getUserWhereUser.php?isAdd=true&User=$user';
+        '${MyConstant().domain}/TakFood/getUserWhereUser.php?isAdd=true&User=$user';
     try {
       Response response = await Dio().get(url);
       //print('res = $response');

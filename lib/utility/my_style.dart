@@ -4,6 +4,12 @@ class MyStyle {
   Color darkColor = Colors.blue.shade900;
   Color primaryColor = Colors.green;
 
+  Widget showProgress() {
+    return Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+
   SizedBox mySizeBox() => SizedBox(
         width: 8.0,
         height: 16.0,
@@ -11,7 +17,8 @@ class MyStyle {
 
   Widget titleCenter(BuildContext context, String string) {
     return Center(
-      child: Container(width: MediaQuery.of(context).size.width*0.5,
+      child: Container(
+        width: MediaQuery.of(context).size.width * 0.5,
         child: Text(
           string,
           style: TextStyle(

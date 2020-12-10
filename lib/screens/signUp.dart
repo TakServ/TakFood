@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:takfood/utility/my_constant.dart';
 import 'package:takfood/utility/my_style.dart';
 import 'package:takfood/utility/normal_dialog.dart';
 
@@ -74,7 +75,7 @@ class _SignUpState extends State<SignUp> {
       );
   Future<Null> checkUser() async {
     String url =
-        'http://192.168.3.208/TakFood/getUserWhereUser.php?isAdd=true&Name=$name&User=$user';
+        '${MyConstant().domain}/TakFood/getUserWhereUser.php?isAdd=true&Name=$name&User=$user';
     try {
       Response response = await Dio().get(url);
       if (response.toString() == 'null') {
@@ -87,7 +88,7 @@ class _SignUpState extends State<SignUp> {
 
   Future<Null> registerThread() async {
     String url =
-        'http://192.168.3.208/TakFood/addUser.php?isAdd=true&Name=$name&User=$user&Password=$password&ChooseType=$chooseType';
+        '${MyConstant().domain}/TakFood/addUser.php?isAdd=true&ChooseType=$chooseType&Name=$name&User=$user&Password=$password';
 
     try {
       Response response = await Dio().get(url);
