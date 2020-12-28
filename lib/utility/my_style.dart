@@ -30,6 +30,18 @@ class MyStyle {
     );
   }
 
+  TextStyle mainTitle = TextStyle(
+    fontSize: 18.0,
+    color: Colors.purple,
+    fontWeight: FontWeight.bold,
+  );
+
+  TextStyle mainH2Title = TextStyle(
+    fontSize: 16.0,
+    color: Colors.green.shade700,
+    fontWeight: FontWeight.bold,
+  );
+
   Text showTitle(String title) => Text(
         title,
         style: TextStyle(
@@ -43,6 +55,15 @@ class MyStyle {
         title,
         style: TextStyle(
           fontSize: 18.0,
+          color: Colors.blue.shade900,
+          fontWeight: FontWeight.bold,
+        ),
+      );
+
+  Text showTitleH3(String title) => Text(
+        title,
+        style: TextStyle(
+          fontSize: 16.0,
           color: Colors.blue.shade900,
           fontWeight: FontWeight.bold,
         ),

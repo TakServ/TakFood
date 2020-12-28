@@ -18,28 +18,29 @@ if (!$link->set_charset("utf8")) {
     exit();
 	}
 
+
 if (isset($_GET)) {
 	if ($_GET['isAdd'] == 'true') {
-				
-		$User = $_GET['User'];
+			
+		$id = $_GET['id'];
+		$NameFood= $_GET['NameFood'];
+		$PathImage= $_GET['PathImage'];
+		$Price= $_GET['Price'];
+		$Detail= $_GET['Detail'];		
+								
+		$sql = "UPDATE `foodTABLE` SET `NameFood`='$NameFood',`PathImage`='$PathImage',`Price`='$Price',`Detail`='$Detail' WHERE id = '$id'";
 
-		$result = mysqli_query($link, "SELECT * FROM userTABLE WHERE User = '$User'");
+		$result = mysqli_query($link, $sql);
 
 		if ($result) {
+			echo "true";
+		} else {
+			echo "false";
+		}
 
-			while($row=mysqli_fetch_assoc($result)){
-			$output[]=$row;
-
-			}	// while
-
-			echo json_encode($output);
-
-		} //if
-
-	} else echo "Welcome Master UNG";	// if2
+	} else echo "Welcome Master UNG";
    
-}	// if1
-
+}
 
 	mysqli_close($link);
 ?>

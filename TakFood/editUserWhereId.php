@@ -3,6 +3,7 @@ header("content-type:text/javascript;charset=utf-8");
 error_reporting(0);
 error_reporting(E_ERROR | E_PARSE);
 $link = mysqli_connect('localhost', 'root', '', "TakFood");
+//$link = mysqli_connect('27.254.148.249', 'tak', '0923567788', "TakFood");
 
 if (!$link) {
     echo "Error: Unable to connect to MySQL." . PHP_EOL;
@@ -28,7 +29,7 @@ if (isset($_GET)) {
 		$UrlPicture = $_GET['UrlPicture'];
 		$Lat = $_GET['Lat'];
 		$Lng = $_GET['Lng'];
-				
+						
 
 		$sql = "UPDATE `userTABLE` SET `NameShop`='$NameShop',`Address`='$Address',`Phone`='$Phone',`UrlPicture`='$UrlPicture',`Lat`='$Lat',`Lng`='$Lng' WHERE id = '$id'";
 

@@ -21,9 +21,9 @@ if (!$link->set_charset("utf8")) {
 if (isset($_GET)) {
 	if ($_GET['isAdd'] == 'true') {
 				
-		$User = $_GET['User'];
+		$ChooseType = $_GET['ChooseType'];
 
-		$result = mysqli_query($link, "SELECT * FROM userTABLE WHERE User = '$User'");
+		$result = mysqli_query($link, "SELECT * FROM userTABLE WHERE ChooseType = '$ChooseType'");
 
 		if ($result) {
 

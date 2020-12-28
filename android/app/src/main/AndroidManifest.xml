@@ -10,8 +10,14 @@
         android:label="takfood"
         android:icon="@mipmap/ic_launcher">
 
+        <!-- Acer -->
         <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="AIzaSyDIRAUQXVPQepJNvQzGJ7ceTLDy3UHk4g4"/>
+            android:value="AIzaSyDIRAUQXVPQepJNvQzGJ7ceTLDy3UHk4g4"/>
+            
+        <!-- HP 
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCK7QMcwS9yNB2e5oBwhDShhaz-oiw_IE4"/>
+            -->
 
         <activity
             android:name=".MainActivity"
