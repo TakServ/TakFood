@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:takfood/model/user_model.dart';
@@ -73,14 +74,20 @@ class _SignInState extends State<SignIn> {
           style: TextStyle(color: Colors.white),
         ),
       ));
+
   Future<Null> checkAuthen() async {
+    // new
+    FirebaseMessaging firebaseMessaging = FirebaseMessaging();
+    String token = await firebaseMessaging.getToken();
+    //print('Toke ==>> $token');
+    // end new
     String url =
-        '${MyConstant().domain}/TakFood/getUserWhereUser.php?isAdd=true&User=$user';
+          '${MyConstant().domain}/TakFood/getUserWhereUser.php?isAdd=true&User=$user';
     try {
       Response response = await Dio().get(url);
-      //print('res = $response');
+      //print('response : $response');
       var result = json.decode(response.data);
-      print('res = $result');
+      //print('res = $result');
       for (var map in result) {
         UserModel userModel = UserModel.fromJson(map);
         if (password == userModel.password) {
@@ -94,6 +101,12 @@ class _SignInState extends State<SignIn> {
           } else {
             normalDialog(context, 'Error');
           }
+          // new
+          String idLogin = userModel.id.toString();
+          url =
+              '${MyConstant().domain}/TakFood/editTokenWhereId.php?isAdd=true&id=$idLogin&Token=$token';
+          await Dio().get(url).then((value) => null);
+          // end new
         } else {
           normalDialog(context, 'Password ผิด กรุณาลองใหม่');
         }
@@ -103,9 +116,12 @@ class _SignInState extends State<SignIn> {
 
   Future<Null> routeToService(Widget myWidget, UserModel userModel) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    preferences.setString('id', userModel.id);
-    preferences.setString('chooseType', userModel.chooseType);
-    preferences.setString('name', userModel.name);
+    // preferences.setString('id', userModel.id);
+    // preferences.setString('chooseType', userModel.chooseType);
+    // preferences.setString('name', userModel.name);
+    preferences.setString(MyConstant().keyId, userModel.id);
+    preferences.setString(MyConstant().keyType, userModel.chooseType);
+    preferences.setString(MyConstant().keyName, userModel.name);
 
     MaterialPageRoute route = MaterialPageRoute(
       builder: (context) => myWidget,

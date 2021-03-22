@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:takfood/screens/main_rider.dart';
@@ -5,6 +7,7 @@ import 'package:takfood/screens/main_shop.dart';
 import 'package:takfood/screens/main_user.dart';
 import 'package:takfood/screens/signIn.dart';
 import 'package:takfood/screens/signUp.dart';
+import 'package:takfood/utility/my_constant.dart';
 import 'package:takfood/utility/my_style.dart';
 import 'package:takfood/utility/normal_dialog.dart';
 
@@ -22,8 +25,20 @@ class _HomeState extends State<Home> {
 
   Future<Null> checkPreferance() async {
     try {
+      FirebaseMessaging firebaseMessaging = FirebaseMessaging();
+      String token = await firebaseMessaging.getToken();
+      print('Toke ==>> $token');
+
       SharedPreferences preferences = await SharedPreferences.getInstance();
       String chooseType = preferences.getString('chooseType');
+      String idLogin = preferences.getString('id');
+      //print('idLogin : $idLogin');
+
+      if (idLogin != null && idLogin.isNotEmpty) {
+        String url =
+            '${MyConstant().domain}/TakFood/editTokenWhereId.php?isAdd=true&id=$idLogin&Token=$token';
+        await Dio().get(url).then((value) => null);
+      }
       if (chooseType != null && chooseType.isNotEmpty) {
         if (chooseType == 'User') {
           normalDialog(context, 'yes User');

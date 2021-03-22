@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:takfood/model/user_model.dart';
+import 'package:takfood/utility/my_style.dart';
+import 'package:takfood/widget/about_shop.dart';
+import 'package:takfood/widget/show_menu_food.dart';
 
 class ShowShopFoodMenu extends StatefulWidget {
   final UserModel userModel;
@@ -11,17 +14,60 @@ class ShowShopFoodMenu extends StatefulWidget {
 
 class _ShowShopFoodMenuState extends State<ShowShopFoodMenu> {
   UserModel userModel;
+  List<Widget> listWidgets = List();
+  int indexPage = 0;
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     userModel = widget.userModel;
+    listWidgets.add(AboutShop(
+      userModel: userModel,
+    ));
+    listWidgets.add(ShowMenuFood(
+      userModel: userModel,
+    ));
+  }
+
+  BottomNavigationBarItem aboutShopNav() {
+    return BottomNavigationBarItem(
+      icon: Icon(Icons.restaurant),
+      title: Text('รายละเอียดร้าน'),
+    );
+  }
+
+  BottomNavigationBarItem showMenuFoodNav() {
+    return BottomNavigationBarItem(
+      icon: Icon(Icons.restaurant_menu),
+      title: Text('เมนูอาหาร'),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(userModel.nameShop),),
+      appBar: AppBar(actions: [MyStyle().iconShowCart(context)],
+        title: Text(userModel.nameShop),
+      ),
+      body: listWidgets.length == 0
+          ? MyStyle().showProgress()
+          : listWidgets[indexPage],
+      bottomNavigationBar: showBottomNavigationBar(),
     );
   }
+
+  BottomNavigationBar showBottomNavigationBar() => BottomNavigationBar(
+        backgroundColor: Colors.red,
+        selectedItemColor: Colors.white,
+        currentIndex: indexPage,
+        onTap: (value) {
+          setState(() {
+            indexPage = value;
+          });
+        },
+        items: <BottomNavigationBarItem>[
+          aboutShopNav(),
+          showMenuFoodNav(),
+        ],
+      );
 }

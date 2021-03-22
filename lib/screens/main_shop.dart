@@ -1,5 +1,8 @@
+import 'dart:io';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:takfood/utility/my_style.dart';
+import 'package:takfood/utility/normal_dialog.dart';
 import 'package:takfood/utility/signout_process.dart';
 import 'package:takfood/widget/infomation_shop.dart';
 import 'package:takfood/widget/list_food_menu_shop.dart';
@@ -13,6 +16,35 @@ class MainShop extends StatefulWidget {
 class _MainShopState extends State<MainShop> {
   // Field
   Widget currentWidget = OrderListShop();
+
+  @override
+  void initState() {
+    super.initState();
+    aboutNotification();
+  }
+
+  Future<Null> aboutNotification() async {
+    if (Platform.isAndroid) {
+      FirebaseMessaging firebaseMessaging = FirebaseMessaging();
+      await firebaseMessaging.configure(
+        onLaunch: (message) async {},
+        onResume: (message) async {
+          // เปิดหน้าจอ Home หรือ ปิดหน้าจอ
+          //print('Noti onResume ${message.toString()}');
+          String title = message['data']['title'];
+          String body = message['data']['body'];
+          normalDialog2(context, title, body);
+        },
+        onMessage: (message) async {
+          // เปิดหน้าจอ app อยู่
+          //print('Noti onMessage ${message.toString()}');
+          String title = message['notification']['title'];
+          String notiMessage = message['notification']['body'];
+          normalDialog2(context, title, notiMessage);
+        },
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

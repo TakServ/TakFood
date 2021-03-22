@@ -31,7 +31,7 @@ class _ShowListShopAllState extends State<ShowListShopAll> {
         UserModel model = UserModel.fromJson(map);
         String nameShop = model.nameShop;
         if (nameShop.isNotEmpty) {
-          print('NameShop = ${model.nameShop}');
+          // print('NameShop = ${model.nameShop}');
           setState(() {
             userModels.add(model);
             shopCards.add(createCard(model, index));
@@ -45,7 +45,7 @@ class _ShowListShopAllState extends State<ShowListShopAll> {
   Widget createCard(UserModel userModel, int index) {
     return GestureDetector(
       onTap: () {
-        print('you click index $index');
+        //print('you click index $index');
         MaterialPageRoute route = MaterialPageRoute(
           builder: (context) => ShowShopFoodMenu(
             userModel: userModels[index],

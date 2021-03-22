@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:takfood/screens/show_cart.dart';
 
 class MyStyle {
   Color darkColor = Colors.blue.shade900;
@@ -7,6 +8,18 @@ class MyStyle {
   Widget showProgress() {
     return Center(
       child: CircularProgressIndicator(),
+    );
+  }
+
+  Widget iconShowCart(BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.add_shopping_cart),
+      onPressed: () {
+        MaterialPageRoute route = MaterialPageRoute(
+          builder: (context) => ShowCart(),
+        );
+        Navigator.push(context, route);
+      },
     );
   }
 
@@ -65,6 +78,33 @@ class MyStyle {
         style: TextStyle(
           fontSize: 16.0,
           color: Colors.blue.shade900,
+          fontWeight: FontWeight.w500,
+        ),
+      );
+
+  Text showTitleH3White(String title) => Text(
+        title,
+        style: TextStyle(
+          fontSize: 16.0,
+          color: Colors.white,
+          fontWeight: FontWeight.w500,
+        ),
+      );
+
+  Text showTitleH3Red(String title) => Text(
+        title,
+        style: TextStyle(
+          fontSize: 16.0,
+          color: Colors.red.shade500,
+          fontWeight: FontWeight.bold,
+        ),
+      );
+
+  Text showTitleH3Purple(String title) => Text(
+        title,
+        style: TextStyle(
+          fontSize: 16.0,
+          color: Colors.purple.shade500,
           fontWeight: FontWeight.bold,
         ),
       );

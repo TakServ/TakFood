@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "966397266416",
+    "project_id": "takfood-f4ccb",
+    "storage_bucket": "takfood-f4ccb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:966397266416:android:6493190003bc473a8bf535",
+        "android_client_info": {
+          "package_name": "com.flutterthailand.takfood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "966397266416-6b4ct9gk5ll2b1c2kr43c3d0jjl471do.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC87S9ZEIyhLs6PmX3SlWEfwh98HvaOyf8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "966397266416-6b4ct9gk5ll2b1c2kr43c3d0jjl471do.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "966397266416-u351crls24dbtqc0uetumbma068k29o1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.flutterthailand.takxx"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

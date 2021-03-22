@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:takfood/screens/show_cart.dart';
 import 'package:takfood/utility/my_style.dart';
 import 'package:takfood/utility/signout_process.dart';
 import 'package:takfood/widget/show_list_shop_all.dart';
@@ -34,6 +35,7 @@ class _MainUserState extends State<MainUser> {
       appBar: AppBar(
         title: Text(nameUser == null ? 'Main User' : '$nameUser Login'),
         actions: [
+          MyStyle().iconShowCart(context),
           IconButton(
             icon: Icon(Icons.exit_to_app),
             onPressed: () => singOutProcess(context),
@@ -53,6 +55,7 @@ class _MainUserState extends State<MainUser> {
               children: <Widget>[
                 showHead(),
                 menuListShop(),
+                menuCart(),
                 menuStatusFoodOrder(),
               ],
             ),
@@ -129,6 +132,21 @@ class _MainUserState extends State<MainUser> {
         'Login',
         style: TextStyle(color: MyStyle().primaryColor),
       ),
+    );
+  }
+
+  Widget menuCart() {
+    return ListTile(
+      leading: Icon(Icons.add_shopping_cart),
+      title: Text('ตะกร้า ของฉัน'),
+      subtitle: Text('รายการอาหาร ที่อยู่ในตะกร้า ยังไม่ได้ Order'),
+      onTap: () {
+        Navigator.pop(context);
+        MaterialPageRoute route = MaterialPageRoute(
+          builder: (context) => ShowCart(),
+        );
+        Navigator.push(context, route);
+      },
     );
   }
 }

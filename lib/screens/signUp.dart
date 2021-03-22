@@ -74,8 +74,10 @@ class _SignUpState extends State<SignUp> {
         ],
       );
   Future<Null> checkUser() async {
-    String url =
-        '${MyConstant().domain}/TakFood/getUserWhereUser.php?isAdd=true&Name=$name&User=$user';
+    // String url =
+    //     '${MyConstant().domain}/TakFood/getUserWhereUser.php?isAdd=true&Name=$name&User=$user';
+      String url =
+        '${MyConstant().domain}/TakFood/getUserWhereUser.php?isAdd=truec&User=$user';    
     try {
       Response response = await Dio().get(url);
       if (response.toString() == 'null') {
